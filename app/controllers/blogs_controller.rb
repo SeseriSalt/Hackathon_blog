@@ -14,7 +14,7 @@ class BlogsController < ApplicationController
   def create
     @blog = current_user.blogs.build(blog_params)
     if @blog.save
-      redirect_to user_path
+      redirect_to user_profile_url(@blog.user.id)
     else
       render 'blogs/new'
     end
