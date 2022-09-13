@@ -11,7 +11,7 @@
   <% @blogs.each do |blog| %>
     <li>
       <%= link_to User.all.find_by(id: blog.user_id).name, "user/#{blog.user_id}" %>
-      <%= link_to blog.content, blog %>
+      <%= link_to blog.title, blog %>
     </li>
   <% end %>
 </ul>
