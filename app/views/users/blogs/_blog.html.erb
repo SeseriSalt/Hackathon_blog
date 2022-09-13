@@ -1,0 +1,6 @@
+<li id="blog-<%= blog.id %>">
+  <span class="content"><%= link_to "#{blog.content}",blog_path(blog.id)  %></span>
+  <span class="timestamp">
+    <%= time_ago_in_words(blog.created_at) %>
+  </span>
+</li>

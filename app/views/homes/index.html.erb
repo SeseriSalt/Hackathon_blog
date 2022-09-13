@@ -1,8 +1,16 @@
 <h1>楽しいブログ</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
 <%=link_to("signup") do %>
 新規登録
 <%end%>
 <%=link_to("login") do %>
 ログイン
 <%end%>
+
+<ul class="blogs">
+  <% @blogs.each do |blog| %>
+    <li>
+      <%= link_to blog.user_id, "user/#{blog.user_id}" %>
+      <%= link_to blog.content, blog %>
+    </li>
+  <% end %>
+</ul>
