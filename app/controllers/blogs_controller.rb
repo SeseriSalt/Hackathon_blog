@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
   def index
+    @blog = Blog.all.page(params[:page])
   end
   
   def show
