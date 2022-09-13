@@ -3,7 +3,11 @@
 <p>IDと内容が出ます</p>
 <%= @blog.id%>
 <%= @blog.content%>
-<%= link_to "編集", edit_blog_path %>
-<%= link_to "破棄", @blog, method: :delete,
-                                  data: { confirm: "You sure?" } %>
-<%= link_to "マイページに戻る", user_profile_url(@blog.user_id) %>                                 
+<% if user_signed_in?  && current_user == @blog.user.id %>
+    <%= link_to "編集", edit_blog_path %>
+    <%= link_to "破棄", @blog, method: :delete,
+                                data: { confirm: "You sure?" } %>
+    <%= link_to "マイページに戻る", user_profile_url(@blog.user_id) %>
+<% else %>
+    <%= link_to "ユーザ投稿一覧に戻る", user_profile_url(@blog.user_id) %>
+<% end %>
