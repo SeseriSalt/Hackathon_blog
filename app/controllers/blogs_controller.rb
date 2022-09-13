@@ -8,19 +8,16 @@ class BlogsController < ApplicationController
   end
 
   def edit
-  
+    @blog = current_user.blogs.find(params[:id])
   end
 
   def create
     @blog = current_user.blogs.build(blog_params)
     if @blog.save
-      redirect_to root_path
+      redirect_to user_path
     else
       render 'blogs/new'
     end
-  end
-
-  def update
   end
 
   def destroy
