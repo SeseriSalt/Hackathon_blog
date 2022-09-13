@@ -1,13 +1,19 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
     <nav>
+      <%= link_to "楽しいブログ", root_path, id: "logo" %>
       <ul class="nav navbar-nav navbar-right">
+<<<<<<< HEAD
         <% if @user %>
-          <li><%= link_to "マイページ", @user.name %></li>
+          <li><%= link_to "マイページ",  "/user/#{current_user.id}"%></li>
+=======
+        <% if user_signed_in? %>
+          <li><%= link_to "マイページ", "/user/#{current_user.id}" %></li>
+>>>>>>> 5c3e18f16b4a062c30019b6f5cd5a43c161d78b2
           <li><%= link_to "ログアウト", logout_path %></li>
         <% else %>
           <li><%= link_to "新規登録", signup_path %></li>
-          <li><%= link_to "ログイン", login_path%></li>
+          <li><%= link_to "ログイン", login_path %></li>
         <% end %>
       </ul>
     </nav>
