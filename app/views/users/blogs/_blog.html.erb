@@ -1,6 +1,6 @@
 <li id="blog-<%= blog.id %>">
   <span class="content"><%= blog.content %></span>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(blog.created_at) %> ago.
+    <%= (blog.created_at) %>分前に投稿
   </span>
 </li>
