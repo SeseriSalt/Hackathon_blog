@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <script>
+    function cursor_position(textarea, position){
+      textarea.focus({ preventScroll: true });
+  		textarea.setSelectionRange(position, position);
+    }
     function add(str){
       var area =  document.getElementById("blog_content");
       var cursor = area.selectionStart;
       area.value = area.value.substr(0, cursor)
   			         + str
   			         + area.value.substr(cursor);
-  		area.focus({ preventScroll: true });
   		var position = cursor + str.length;
-  		area.setSelectionRange(position, position);
+  		cursor_position(area, position);
     }
     
     function cover(str){
-      var area  =  document.getElementById("blog_content");
+      var area =  document.getElementById("blog_content");
       var start = area.selectionStart;
       var end = area.selectionEnd;
       area.value = area.value.substr(0, start)
@@ -20,11 +23,47 @@
   			         + area.value.substr(start, end - start)
   			         + str + ' '
   			         + area.value.substr(end);
-      area.focus({ preventScroll: true });
   		var position = 2 * str.length + end + 2;
-  		area.setSelectionRange(position, position);
+  		cursor_position(area, position);
     }
-    
+    function coverall(str) {
+      var area =  document.getElementById("blog_content");
+      var start = area.selectionStart;
+      var end = area.selectionEnd;
+      content = area.value.slice(start, end)
+      var texts_between_new_line = content.split("\n");
+      var retString = "";
+      for( var i=0 ; i < texts_between_new_line.length ; i++ ) {
+        if( !(i == texts_between_new_line.length-1 && texts_between_new_line[i].length == 0) ) {
+           // 「最後の空行」以外なら処理(＝先頭に文字列を追加)を行う
+           retString += str + texts_between_new_line[i] + "\n";
+        }
+      }
+      area.value = area.value.substr(0, start)
+  			         + retString
+  			         + area.value.substr(end);
+  	  var position = end + texts_between_new_line.length + 1
+      cursor_position(area, position);
+    }
+    function cover_num() {
+      var area =  document.getElementById("blog_content");
+      var start = area.selectionStart;
+      var end = area.selectionEnd;
+      content = area.value.slice(start, end)
+      var texts_between_new_line = content.split("\n");
+      var retString = "";
+      for( var i=0 ; i < texts_between_new_line.length ; i++ ) {
+        if( !(i == texts_between_new_line.length-1 && texts_between_new_line[i].length == 0) ) {
+           // 「最後の空行」以外なら処理(＝先頭に文字列を追加)を行う
+           retString += (i+1) + '\. ' + texts_between_new_line[i] + "\n";
+        }
+      }
+      area.value = area.value.substr(0, start)
+  			         + "\n" + retString
+  			         + area.value.substr(end);
+  	  var position = end + texts_between_new_line.length + 1
+      cursor_position(area, position);
+    }
     function midashi1() {
       add("# ")
     }
@@ -34,23 +73,59 @@
     function midashi3() {
       add("### ")
     }
+    function midashi4() {
+      add("#### ")
+    }
+    function midashi5() {
+      add("##### ")
+    }
     function futoji(){
       cover('**')
     }
     function inline(){
       cover("`")
     }
+    function uchikeshi(){
+      cover("~~")
+    }
+    function simple_list(){
+      coverall('+ ')
+    }
+    function num_list(){
+      cover_num()
+    }
+    function quote(){
+      coverall('> ')
+    }
+    function link(){
+      add('[リンクテキスト](URL "タイトル(任意)")')
+    }
+    function image_link(){
+      add('![代替テキスト](画像のURL "画像タイトル(任意)")')
+    }
+    function youtube(){
+      add('<iframe width="560" height="315" src="URLをここに貼ってください" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy" allowfullscreen></iframe>')
+    }
 </script>
 
 <%= render 'layouts/header' %>
 <h1>編集画面</h1>
-<p>
 <div class="col-md-6 col-md-offset-3 field">
 <div onclick="midashi1()" class ="btn">見出し1</div>
 <div onclick="midashi2()" class ="btn">見出し2</div>
 <div onclick="midashi3()" class ="btn">見出し3</div>
-<div onclick="futoji()" 　class ="btn">太字</div>
-<div onclick="inline()" 　class ="btn">インライン</div>
+<div onclick="midashi4()" class ="btn">見出し4</div>
+<div onclick="midashi5()" class ="btn">見出し5</div>
+<div onclick="futoji()" class ="btn">太字</div>
+<div onclick="inline()" class ="btn">インライン</div>
+<div onclick="uchikeshi()" class ="btn">打ち消し</div>
+<div onclick="simple_list()" class="btn">リスト</div>
+<div onclick="num_list()" class="btn">数字リスト</div>
+<div onclick="quote()" class="btn">引用</div>
+<div onclick="link()" class="btn">リンク</div>
+<div onclick="image_link()" class="btn">画像用リンク</div>
+<dev onclick="youtube()" class="btn">Youtube用リンク</dev>
+
 <%= form_with(model: @blog, local: true) do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title%>
