@@ -1,11 +1,5 @@
 <%= render 'layouts/header' %>
 <h1>楽しいブログ</h1>
-<%=link_to("signup") do %>
-新規登録
-<%end%>
-<%=link_to("login") do %>
-ログイン
-<%end%>
 
 <ul class="blogs">
   <% @blogs.each do |blog| %>
