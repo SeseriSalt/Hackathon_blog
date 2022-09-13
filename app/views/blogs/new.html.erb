@@ -4,9 +4,9 @@
   <div class="col-md-6 col-md-offset-3 field">
     <%= form_with(model: @blog, local: true) do |f| %>
       <%= f.label :title %>
-      <%= f.text_field :title, placeholder: "タイトル"%>
+      <%= f.text_field :title, placeholder: "タイトル" %>
       <%= f.label :content %>
-      <%= f.text_area :content, placeholder: "投稿を作成..."%>
+      <%= f.text_area :content, placeholder: "投稿を作成..." %>
 
 
       <%= f.submit "Create my blog", class: "btn btn-primary" %>
