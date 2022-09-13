@@ -1,8 +1,24 @@
-<h1>楽しいブログ</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
-<%=link_to("signup") do %>
-新規登録
-<%end%>
-<%=link_to("login") do %>
-ログイン
-<%end%>
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <% if @user && @user.logged_in? %>
+          <li><%= link_to "マイページ", @user.name %></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Account <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "ログアウト", signout_path %></li>
+              <li class="divider"></li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to "新規登録", signup_path %></li>
+          <li><%= link_to "ログイン", login_path%></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>
+
