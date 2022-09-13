@@ -3,7 +3,7 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-          <li><%= link_to "マイページ", current_user.name %></li>
+          <li><%= link_to "マイページ", "/user/#{current_user.id}" %></li>
           <li><%= link_to "ログアウト", logout_path %></li>
         <% else %>
           <li><%= link_to "新規登録", signup_path %></li>
