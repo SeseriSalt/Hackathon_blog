@@ -1,7 +1,7 @@
 <%= render 'layouts/header' %>
 <h1>ユーザーページ</h1>
 <%=link_to "ホームに戻る", root_path %>
-<% if user_signed_in?  && current_user == @user.id %>
+<% if user_signed_in?  && current_user.id == @user.id %>
   <%= link_to "新規作成",  new_blog_path %>
 <% end %>
 <% provide(:title, @user.name) %>
