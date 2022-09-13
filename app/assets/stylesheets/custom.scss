@@ -2,7 +2,7 @@
 @import "bootstrap";
 
 body {
-  padding-top: 60px;
+  padding: 60px 10% 0 10%;
 }
 
 section {
@@ -143,3 +143,7 @@ h1 {
   background: #e7e9ec;
 }
 
+#blog_content {
+  width: 50%;
+  height: auto;
+}
