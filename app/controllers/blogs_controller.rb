@@ -17,7 +17,7 @@ class BlogsController < ApplicationController
   def create
     @blog = current_user.blogs.build(blog_params)
     if @blog.save
-      redirect_to user_profile_url(@blog.user.id)
+      redirect_to user_profile_url(@blog.user_id)
     else
       render 'new'
     end
@@ -34,7 +34,7 @@ class BlogsController < ApplicationController
 
   def destroy
     Blog.find(params[:id]).destroy
-    redirect_to root_url
+    redirect_to user_profile_url(current_user.id)
   end
   
   private
