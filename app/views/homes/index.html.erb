@@ -1,24 +1,11 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <% if @user && @user.logged_in? %>
-          <li><%= link_to "マイページ", @user.name %></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Account <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "ログアウト", signout_path %></li>
-              <li class="divider"></li>
-            </ul>
-          </li>
-        <% else %>
-          <li><%= link_to "新規登録", signup_path %></li>
-          <li><%= link_to "ログイン", login_path%></li>
-        <% end %>
-      </ul>
-    </nav>
-  </div>
-</header>
+<%= render 'layouts/header' %>
+<h1>楽しいブログ</h1>
 
+<ul class="blogs">
+  <% @blogs.each do |blog| %>
+    <li>
+      <%= link_to User.all.find_by(id: blog.user_id).name, "user/#{blog.user_id}" %>
+      <%= link_to blog.title, blog %>
+    </li>
+  <% end %>
+</ul>

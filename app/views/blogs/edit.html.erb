@@ -1,3 +1,13 @@
+<%= render 'layouts/header' %>
 <h1>編集画面</h1>
-<%= @blog.id%>
-<%= @blog.content%>
+<div class="col-md-6 col-md-offset-3 field">
+<%= form_with(model: @blog, local: true) do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title%>
+  <%= f.label :content %>
+  <%= f.text_area :content, size: "400x70"%>
+
+  <%= f.submit "Update my blog", class: "btn btn-primary" %>
+<% end %>
+<%= link_to "詳細に戻る", @blog %>
+</body>
