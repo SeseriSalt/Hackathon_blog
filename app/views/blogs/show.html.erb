@@ -2,5 +2,6 @@
 <p>IDと内容が出ます</p>
 <%= @blog.id%>
 <%= @blog.content%>
-<%= link_to "編集", "blogs/edit" %>
-<%= link_to "破棄", "blogs/destroy" %>
+<%= link_to "編集", edit_blog_path %>
+<%= link_to "破棄", @blog, method: :delete,
+                                  data: { confirm: "You sure?" } %>
