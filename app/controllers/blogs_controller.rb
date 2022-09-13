@@ -1,4 +1,7 @@
 class BlogsController < ApplicationController
+  def index
+  end
+  
   def show
     @blog = Blog.find(params[:id])
   end
@@ -8,19 +11,30 @@ class BlogsController < ApplicationController
   end
 
   def edit
-    @blog = current_user.blogs.find(params[:id])
+    @blog = Blog.find(params[:id])
   end
 
   def create
     @blog = current_user.blogs.build(blog_params)
     if @blog.save
-      redirect_to user_path
+      redirect_to user_profile_url(@blog.user_id)
     else
-      render 'blogs/new'
+      render 'new'
+    end
+  end
+  
+  def update
+    @blog = Blog.find(params[:id])
+    if @blog.update(blog_params)
+      redirect_to @blog
+    else
+      render 'edit'
     end
   end
 
   def destroy
+    Blog.find(params[:id]).destroy
+    redirect_to user_profile_url(current_user.id)
   end
   
   private

@@ -6,6 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # プロフィール画面用のアクションを追加
   def detail
     @user = User.find_by(id: params[:id])
+    @blogs = @user.blogs.paginate(page: params[:page])
   end
   
   # protected
