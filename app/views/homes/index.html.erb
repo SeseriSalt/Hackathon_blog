@@ -9,7 +9,7 @@
 <ul class="blogs">
   <% @blogs.each do |blog| %>
     <li>
-      <%= link_to blog.user_id, "user/#{blog.user_id}" %>
+      <%= link_to User.all.find_by(id: blog.user_id).name, "user/#{blog.user_id}" %>
       <%= link_to blog.content, blog %>
     </li>
   <% end %>
