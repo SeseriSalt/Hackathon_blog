@@ -1,6 +1,56 @@
+<!DOCTYPE html>
+<script>
+    function add(str){
+      var area =  document.getElementById("blog_content");
+      var cursor = area.selectionStart;
+      area.value = area.value.substr(0, cursor)
+  			         + str
+  			         + area.value.substr(cursor);
+  		area.focus({ preventScroll: true });
+  		var position = cursor + str.length;
+  		area.setSelectionRange(position, position);
+    }
+    
+    function cover(str){
+      var area  =  document.getElementById("blog_content");
+      var start = area.selectionStart;
+      var end = area.selectionEnd;
+      area.value = area.value.substr(0, start)
+  			         + ' ' + str
+  			         + area.value.substr(start, end - start)
+  			         + str + ' '
+  			         + area.value.substr(end);
+      area.focus({ preventScroll: true });
+  		var position = 2 * str.length + end + 2;
+  		area.setSelectionRange(position, position);
+    }
+    
+    function midashi1() {
+      add("# ")
+    }
+    function midashi2() {
+      add("## ")
+    }
+    function midashi3() {
+      add("### ")
+    }
+    function futoji(){
+      cover('**')
+    }
+    function inline(){
+      cover("`")
+    }
+</script>
+
 <%= render 'layouts/header' %>
 <h1>編集画面</h1>
+<p>
 <div class="col-md-6 col-md-offset-3 field">
+<div onclick="midashi1()" class ="btn">見出し1</div>
+<div onclick="midashi2()" class ="btn">見出し2</div>
+<div onclick="midashi3()" class ="btn">見出し3</div>
+<div onclick="futoji()" 　class ="btn">太字</div>
+<div onclick="inline()" 　class ="btn">インライン</div>
 <%= form_with(model: @blog, local: true) do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title%>
