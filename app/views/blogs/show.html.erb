@@ -2,7 +2,7 @@
 <h1>ブログ詳細</h1>
 <p>IDと内容が出ます</p>
 <%= @blog.id%>
-<%= @blog.content%>
+<%= html @blog.content%>
 <% if user_signed_in?  && current_user.id == @blog.user.id %>
     <%= link_to "編集", edit_blog_path %>
     <%= link_to "破棄", @blog, method: :delete,

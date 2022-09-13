@@ -5,7 +5,9 @@
   <%= f.label :title %>
   <%= f.text_field :title%>
   <%= f.label :content %>
-  <%= f.text_area :content %>
+  <%= f.text_area :content, size: "400x70"%>
 
   <%= f.submit "Update my blog", class: "btn btn-primary" %>
 <% end %>
+<%= link_to "詳細に戻る", @blog %>
+</body>
