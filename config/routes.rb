@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root 'homes#index'
   get  'homes/index'
   resources 'blogs'
   resources 'mypages'
@@ -18,3 +19,4 @@ Rails.application.routes.draw do
     get "login", :to => "users/sessions#new"
     get "logout", :to => "users/sessions#destroy"
   end
+end
