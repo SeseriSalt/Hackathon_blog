@@ -5,6 +5,7 @@ class HomesController < ApplicationController
   
   def fav_index
     @blogs = Blog.all
+    @blogs_favo = @blogs.order('favo desc')
   end
   
 end
