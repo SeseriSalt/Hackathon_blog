@@ -11,7 +11,7 @@
   </aside>
   <table class="table table-striped">
     <thead class="thead-dark">
-      <tr><th>タイトル</th><th>タグ</th><th>投稿時間</th><th colspan="2"></th></tr>
+      <tr><th>タイトル</th><th>タグ</th><th>いいね</th><th>投稿時間</th><th colspan="2"></th></tr>
     </thead>
     <tbody>
       <% if @user.blogs.any? %>
@@ -23,6 +23,7 @@
                 # <%= blog.tag %>
               <% end %>
             </th>
+            <th><%= blog.favo %></th>
             <th><%= time_ago_in_words(blog.created_at) %>前</th>
             <th colspan="2"></th>
           </tr>
