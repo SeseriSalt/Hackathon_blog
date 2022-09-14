@@ -1,7 +1,8 @@
 <%= render 'layouts/header' %>
 <div class="container">
-    <% if user_signed_in?  && current_user.id == @blog.user.id %>
-        <%= link_to "投稿を編集", edit_blog_path, class: 'btn btn-primary' %>
+    <div class="py-5">
+        <% if user_signed_in?  && current_user.id == @blog.user.id %>
+        <%= link_to "投稿を編集", edit_blog_path, class: 'btn btn-primary p-5' %>
         <%= link_to "削除", @blog, method: :delete,
                                     data: { confirm: "You sure?" }, class: 'btn btn-danger' %>
         <%= link_to "マイページに戻る", user_profile_url(@blog.user_id), class: 'btn btn-primary' %>
@@ -10,7 +11,12 @@
     <% end %>
     <div class="mt-3">
         <div class = "panel panel-default"> 
-            <div class = "panel-heading"> <%= @blog.title %> </div> 
+            <div class = "panel-heading">
+                <h3><%= @blog.title %></h3>
+                <% if @blog.tag %>
+                    #<%= @blog.tag %>
+                <% end %>
+            </div> 
             <div class = "panel-body">
                 <%= html @blog.content%>
             </div> 
