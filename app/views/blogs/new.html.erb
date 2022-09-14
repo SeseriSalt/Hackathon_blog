@@ -5,6 +5,8 @@
       <%= form_with(model: @blog, local: true) do |f| %>
         <%= f.label :title %>
         <%= f.text_field :title, placeholder: "タイトル" %>
+        <%= f.label :tag %>
+        <%= f.text_field :tag, placeholder: "ジャンル" %>
         <%= f.label :content %>
         <%= f.text_area :content, placeholder: "投稿を作成..." %>
     </div>
