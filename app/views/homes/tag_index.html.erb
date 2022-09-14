@@ -5,19 +5,13 @@
       <tr><th><%= link_to "最近の投稿", root_path %></th><th><%= link_to "いいね数ランキング", ranking_path %></th><th colspan="2"></th></tr>
     </thead>
   </table>
-  <h2>最新の投稿</h2>
+  <h2>#<%= @search %></h2>
   <table class="table table-striped">
-    <p>タグ検索</p>
-    <%= form_tag(search_path,:method => 'get') do %>
-      <%= text_field_tag :search %>
-      <%= submit_tag 'Search', :name => nil %>
-    <% end %>
-
     <thead class="thead-dark">
       <tr><th>投稿者</th><th>タイトル</th><th>タグ</th><th>いいね</th><th>投稿時間</th><th colspan="2"></th></tr>
     </thead>
     <tbody>
-      <% @blogs.reverse_each do |blog| %>
+      <% @blogs_search.reverse_each do |blog| %>
         <tr>
           <th><%= link_to User.all.find_by(id: blog.user_id).name, "user/#{blog.user_id}" %></th>
           <th><%= link_to blog.title, blog %></th>
