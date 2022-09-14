@@ -4,6 +4,11 @@ class HomesController < ApplicationController
     @blogs = Blog.all
   end
   
+  def tag_index
+    @blogs_search = Blog.search(params[:search])
+    @search = params[:search]
+  end
+  
   def fav_index
     @user = current_user
     @blogs = Blog.all
