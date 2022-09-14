@@ -11,7 +11,7 @@ module ApplicationHelper
     strikethrough: true
 
   def html(markdown)
-    @@markdown.render(markdown).html_safe
+    @@markdown.render(markdown).html_safe if !!markdown
   end
   
 end

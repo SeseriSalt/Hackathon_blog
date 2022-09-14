@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root 'homes#index'
   get  'homes/index'
   resources 'blogs'
+  namespace :api, format: 'json' do
+    get 'blogs/preview'
+  end
   resources 'mypages'
   # r 'application#hello'
   
