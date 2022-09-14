@@ -127,7 +127,7 @@
 <div class="container">
   <h1>編集画面</h1>
   <%= render 'markdown' %>
-  <%= form_with(model: @blog, local: true) do |f| %>
+  <%= form_with(model: @blog, local: true, class: "blog_form") do |f| %>
     <div class="mb-3">
       <%= f.label :title, class: "form-label" %>
       <%= f.text_field :title, class: "form-control" %>
