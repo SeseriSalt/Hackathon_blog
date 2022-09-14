@@ -129,6 +129,8 @@
 <%= form_with(model: @blog, local: true) do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title%>
+  <%= f.label :tag %>
+  <%= f.text_field :tag %>
   <%= f.label :content %>
   <%= f.text_area :content, size: "400x70"%>
 
