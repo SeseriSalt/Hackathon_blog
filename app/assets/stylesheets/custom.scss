@@ -1,8 +1,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
+html {
+  height: 100vh;
+}
 body {
   padding-top: 60px;
+  height: 100%;
 }
 
 section {
@@ -10,7 +13,18 @@ section {
 }
 
 textarea {
-  resize: vertical;
+  resize: vertix;
+  width: 40%;
+}
+
+.text_area {
+  height: 300px;
+  #blog_content {
+    height: 90%;
+  }
+}
+.container{
+  height: 100%;  
 }
 
 .center {
@@ -170,4 +184,6 @@ h1 {
   background: #e7e9ec;
 }
 
-
+form {
+  height: 50vh;
+}

@@ -1,4 +1,3 @@
-
 <script src="https://kit.fontawesome.com/5a2ba75684.js" crossorigin="anonymous"></script>
 <script>
     function cursor_position(textarea, position){
@@ -125,18 +124,22 @@
 </script>
 
 <%= render 'layouts/header' %>
-
-<h1>編集画面</h1>
-<div class="col-md-6 col-md-offset-3 field">
-<%= render 'markdown' %>
-<%= form_with(model: @blog, local: true) do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title%>
-  <%= f.label :content %>
-  <%= f.text_area :content, size: "400x70"%>
-
-  <%= f.submit "Update my blog", class: "btn btn-primary" %>
-<% end %>
-<%= link_to "詳細に戻る", @blog %>
-
-<%= render 'preview_btn'%>
+<div class="container">
+  <h1>編集画面</h1>
+  <%= render 'markdown' %>
+  <%= form_with(model: @blog, local: true) do |f| %>
+    <div class="mb-3">
+      <%= f.label :title, class: "form-label" %>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+    <div class="mb-3 text_area" >
+      <%= f.label :content, class: "form-label" %>
+      <%= f.text_area :content, class: "form-control" %>
+    </div>
+    <%= f.submit "Update my blog", class: "btn btn-primary" %>
+  <% end %>
+  
+  <%= link_to "詳細に戻る", @blog %>
+  
+  <%= render 'preview_btn'%>
+</div>
