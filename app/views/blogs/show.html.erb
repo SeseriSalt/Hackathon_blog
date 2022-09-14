@@ -2,13 +2,20 @@
 <div class="container">
     <div class="py-5">
         <% if user_signed_in?  && current_user.id == @blog.user.id %>
-        <%= link_to "投稿を編集", edit_blog_path, class: 'btn btn-primary p-5' %>
-        <%= link_to "削除", @blog, method: :delete,
-                                    data: { confirm: "You sure?" }, class: 'btn btn-danger' %>
-        <%= link_to "マイページに戻る", user_profile_url(@blog.user_id), class: 'btn btn-primary' %>
-    <% else %>
-        <%= link_to "ユーザ投稿一覧に戻る", user_profile_url(@blog.user_id), class: 'btn btn-primary' %>
-    <% end %>
+            <%= link_to "投稿を編集", edit_blog_path, class: 'btn btn-primary p-5' %>
+            <%= link_to "削除", @blog, method: :delete,
+                                        data: { confirm: "You sure?" }, class: 'btn btn-danger' %>
+            <%= link_to "マイページに戻る", user_profile_url(@blog.user_id), class: 'btn btn-primary' %>
+        <% else %>
+            <%= link_to "ユーザ投稿一覧に戻る", user_profile_url(@blog.user_id), class: 'btn btn-primary' %>
+        <% end %>
+        <%= form_with(model: @blog, url: good_path, local: true) do |f| %>
+            <% f.button :favo%>
+            <%= f.submit "いいね", class: "btn btn-secondry" %>
+        <% end %>
+        <%= @blog.favo %>
+
+    </div>
     <div class="mt-3">
         <div class = "panel panel-default"> 
             <div class = "panel-heading">

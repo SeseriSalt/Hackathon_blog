@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get  'homes/index'
   get  "homes/fav_index", :to => "homes#fav_index", as: 'ranking'
   resources 'blogs'
+  patch "blogs/:id/good", :to => "blogs#good", as: 'good'
   resources 'mypages'
   # r 'application#hello'
   
