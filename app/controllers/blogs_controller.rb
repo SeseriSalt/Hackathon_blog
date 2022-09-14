@@ -38,19 +38,9 @@ class BlogsController < ApplicationController
     redirect_to user_profile_url(current_user.id)
   end
   
-  def good
-    @blog = Blog.find(params[:id])
-    @blog.favo += 1
-    @blog.update(blog_params)
-      redirect_to @blog
-  end
-  
   private
 
     def blog_params
-      params.permit(:title, :content, :favo, :tag)
-
       params.require(:blog).permit(:title, :tag, :content, :favo)
-
     end
 end

@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   get  "homes/fav_index", :to => "homes#fav_index", as: 'ranking'
   resources 'blogs'
 
-  patch "blogs/:id/good", :to => "blogs#good", as: 'good'
   namespace :api, format: 'json' do
     get 'blogs/preview'
   end

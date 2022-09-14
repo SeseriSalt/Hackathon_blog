@@ -9,8 +9,8 @@
         <% else %>
             <%= link_to "ユーザ投稿一覧に戻る", user_profile_url(@blog.user_id), class: 'btn btn-primary' %>
         <% end %>
-        <%= form_with(model: @blog, url: good_path, local: true) do |f| %>
-            <% f.button :favo%>
+        <%= form_with(model: @blog) do |f| %>
+            <%= f.hidden_field :favo, value: @blog.favo+1 %>
             <%= f.submit "いいね", class: "btn btn-secondry" %>
         <% end %>
         <%= @blog.favo %>
