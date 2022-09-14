@@ -15,7 +15,7 @@
     <p>タグ検索</p>
     <%= form_tag(search_fav_path,:method => 'get') do %>
       <%= text_field_tag :search %>
-      <%= submit_tag 'Search', :name => nil %>
+      <%= submit_tag 'Search', :name => nil, class: 'btn btn-secondry btn-sm2'%>
     <% end %>
     <thead class="thead-dark">
       <tr><th>投稿者</th><th>タイトル</th><th>タグ</th><th>いいね</th><th>投稿時間</th><th colspan="2"></th></tr>
