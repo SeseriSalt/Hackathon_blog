@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'homes#index'
   get  'homes/index'
   get  "homes/tag_index", :to => "homes#tag_index", as: 'search'
+  get  "homes/fav_tag_index", :to => "homes#fav_tag_index", as: 'search_fav'
   get  "homes/fav_index", :to => "homes#fav_index", as: 'ranking'
   resources 'blogs'
 
