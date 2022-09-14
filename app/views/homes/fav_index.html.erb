@@ -11,7 +11,7 @@
       <tr><th>投稿者</th><th>タイトル</th><th>タグ</th><th>いいね</th><th>投稿時間</th><th colspan="2"></th></tr>
     </thead>
     <tbody>
-      <% @blogs.reverse_each do |blog| %>
+      <% @blogs_favo.each do |blog| %>
         <tr>
           <th><%= link_to User.all.find_by(id: blog.user_id).name, "user/#{blog.user_id}" %></th>
           <th><%= link_to blog.title, blog %></th>
