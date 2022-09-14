@@ -9,11 +9,10 @@
     <% else %>
         <%= link_to "ユーザ投稿一覧に戻る", user_profile_url(@blog.user_id), class: 'btn btn-primary' %>
     <% end %>
-<<<<<<< Updated upstream
     <div class="mt-3">
         <div class = "panel panel-default"> 
             <div class = "panel-heading">
-                <%= @blog.title %>
+                <h3><%= @blog.title %></h3>
                 <% if @blog.tag %>
                     #<%= @blog.tag %>
                 <% end %>
@@ -21,13 +20,6 @@
             <div class = "panel-body">
                 <%= html @blog.content%>
             </div> 
-=======
-    </div>
-    <div class="mt">
-        <div class = "panel panel-default m-5"> 
-            <div class = "panel-heading"><h3><%= @blog.title %></h3></div> 
-            <div class = "panel-body"><%= html @blog.content%></div> 
->>>>>>> Stashed changes
         </div> 
     </div>
 </div>
