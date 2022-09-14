@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <script>
     function cursor_position(textarea, position){
       textarea.focus({ preventScroll: true });
@@ -30,7 +29,7 @@
       var area =  document.getElementById("blog_content");
       var start = area.selectionStart;
       var end = area.selectionEnd;
-      content = area.value.slice(start, end)
+      var content = area.value.slice(start, end)
       var texts_between_new_line = content.split("\n");
       var retString = "";
       for( var i=0 ; i < texts_between_new_line.length ; i++ ) {
@@ -49,7 +48,7 @@
       var area =  document.getElementById("blog_content");
       var start = area.selectionStart;
       var end = area.selectionEnd;
-      content = area.value.slice(start, end)
+      var content = area.value.slice(start, end)
       var texts_between_new_line = content.split("\n");
       var retString = "";
       for( var i=0 ; i < texts_between_new_line.length ; i++ ) {
@@ -111,21 +110,7 @@
 <%= render 'layouts/header' %>
 <h1>編集画面</h1>
 <div class="col-md-6 col-md-offset-3 field">
-<div onclick="midashi1()" class ="btn">見出し1</div>
-<div onclick="midashi2()" class ="btn">見出し2</div>
-<div onclick="midashi3()" class ="btn">見出し3</div>
-<div onclick="midashi4()" class ="btn">見出し4</div>
-<div onclick="midashi5()" class ="btn">見出し5</div>
-<div onclick="futoji()" class ="btn">太字</div>
-<div onclick="inline()" class ="btn">インライン</div>
-<div onclick="uchikeshi()" class ="btn">打ち消し</div>
-<div onclick="simple_list()" class="btn">リスト</div>
-<div onclick="num_list()" class="btn">数字リスト</div>
-<div onclick="quote()" class="btn">引用</div>
-<div onclick="link()" class="btn">リンク</div>
-<div onclick="image_link()" class="btn">画像用リンク</div>
-<dev onclick="youtube()" class="btn">Youtube用リンク</dev>
-
+<%= render 'markdown' %>
 <%= form_with(model: @blog, local: true) do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title%>
@@ -135,4 +120,15 @@
   <%= f.submit "Update my blog", class: "btn btn-primary" %>
 <% end %>
 <%= link_to "詳細に戻る", @blog %>
-</body>
+
+<div class = 'preview'>
+   <div class = 'btn', id = 'update'>プレビュー更新</div><br>
+   <span id = "preview_text"></span>
+</div>
+<script>
+	$("#update").click(function() {
+		// 値を取得
+		var str = $('#blog_content').val();
+		$("#preview_text").text(str)
+	});
+</script>
