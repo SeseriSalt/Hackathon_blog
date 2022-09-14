@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <script src="https://kit.fontawesome.com/5a2ba75684.js" crossorigin="anonymous"></script>
 <script>
     function cursor_position(textarea, position){
@@ -31,7 +31,7 @@
       var area =  document.getElementById("blog_content");
       var start = area.selectionStart;
       var end = area.selectionEnd;
-      content = area.value.slice(start, end)
+      var content = area.value.slice(start, end)
       var texts_between_new_line = content.split("\n");
       var retString = "";
       for( var i=0 ; i < texts_between_new_line.length ; i++ ) {
@@ -50,7 +50,7 @@
       var area =  document.getElementById("blog_content");
       var start = area.selectionStart;
       var end = area.selectionEnd;
-      content = area.value.slice(start, end)
+      var content = area.value.slice(start, end)
       var texts_between_new_line = content.split("\n");
       var retString = "";
       for( var i=0 ; i < texts_between_new_line.length ; i++ ) {
@@ -110,43 +110,28 @@
 </script>
 
 <%= render 'layouts/header' %>
-<div class="d-flex flex-column">
-  <div class="container">
-    <h1>編集画面</h1>
-    <div class="row">
-      <div onclick="midashi1()" class ="btn btn-default fa-solid fa-h1">見出し1</div>
-      <div onclick="midashi2()" class ="btn btn-default fa-solid fa-h2">見出し2</div>
-      <div onclick="midashi3()" class ="btn btn-default fa-solid fa-h3">見出し3</div>
-      <div onclick="midashi4()" class ="btn btn-default fa-solid fa-h4">見出し4</div>
-      <div onclick="midashi4()" class ="btn btn-default fa-solid fa-h5">見出し5</div>
-    </div>
-    <div class="row">
-      <div onclick="futoji()" class ="btn btn-default"><i class="fa-solid fa-bold"></i>太字</div>
-      <div onclick="inline()" class ="btn btn-default"><i class="fa-solid fa-highlighter"></i>インライン</div>
-      <div onclick="uchikeshi()" class ="btn btn-default"><i class="fa-solid fa-strikethrough"></i>打ち消し</div>
-      <div onclick="simple_list()" class="btn btn-default"><i class="fa-solid fa-list"></i>リスト</div>
-      <div onclick="num_list()" class="btn btn-default"><i class="fa-solid fa-list-ol"></i>数字リスト</div>
-    </div>
-    <div class="row">
-      <div onclick="quote()" class="btn btn-default fa-solid fa-block-quote"><i class="fa-solid fa-block-quote"></i>引用</div>
-      <div onclick="link()" class="btn btn-default"><i class="fa-solid fa-link"></i>リンク</div>
-      <div onclick="image_link()" class="btn btn-default"><i class="fa-solid fa-image"></i>画像用リンク</div>
-      <dev onclick="youtube()" class="btn btn-default"><i class="fa-solid fa-square-caret-right"></i>Youtube用リンク</dev>
-    </div>
-  <div class="d-flex flex-column">
-    <%= form_with(model: @blog, local: true) do |f| %>
-    <div class="row p-5">
-      <%= f.label :title %>
-      <%= f.text_field :title%>
-    </div>
-    <div class="row">
-      <%= f.label :content %>
-      <%= f.text_area :content, size: "400x70"%>
-    </div>
-    <div class="row">
-      <%= link_to "詳細に戻る", @blog, class: "btn btn-primary" %>
-      <%= f.submit "ブログを更新", class: "btn btn-primary" %>
-    </div>
-    <% end %>
-  </div>  
+
+<h1>編集画面</h1>
+<div class="col-md-6 col-md-offset-3 field">
+<%= render 'markdown' %>
+<%= form_with(model: @blog, local: true) do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title%>
+  <%= f.label :content %>
+  <%= f.text_area :content, size: "400x70"%>
+
+  <%= f.submit "Update my blog", class: "btn btn-primary" %>
+<% end %>
+<%= link_to "詳細に戻る", @blog %>
+
+<div class = 'preview'>
+   <div class = 'btn', id = 'update'>プレビュー更新</div><br>
+   <span id = "preview_text"></span>
 </div>
+<script>
+	$("#update").click(function() {
+		// 値を取得
+		var str = $('#blog_content').val();
+		$("#preview_text").text(str)
+	});
+</script>
