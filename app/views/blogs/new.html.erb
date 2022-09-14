@@ -107,6 +107,21 @@
     function youtube(){
       add('<iframe width="560" height="315" src="URLをここに貼ってください" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy" allowfullscreen></iframe>')
     }
+    $(function() {
+    // previewボタンが押されたらイベント発火
+    $('#preview').on('click', function() {
+      var text = $('#blog_content').val();
+      $.ajax({  
+        url: '/api/blogs/preview',
+        type: 'GET',
+        dataType: 'json',
+        data: { body: text }
+      })
+      .done(function(p_text) {
+        $('#preview_text').empty().append(p_text.body);
+      })
+    })
+  })
 </script>
 
 <div class="container">
@@ -124,3 +139,4 @@
          <%= f.submit "ブログを投稿", class: "btn btn-primary" %>
       <% end %>
 </div>
+<%= render "preview_btn" %>

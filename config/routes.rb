@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   get  'homes/index'
   get  "homes/fav_index", :to => "homes#fav_index", as: 'ranking'
   resources 'blogs'
+  namespace :api, format: 'json' do
+    get 'blogs/preview'
+  end
   resources 'mypages'
   # r 'application#hello'
   
