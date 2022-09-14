@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'homes#index'
   get  'homes/index'
+  get  "homes/fav_index", :to => "homes#fav_index", as: 'ranking'
   resources 'blogs'
   resources 'mypages'
   # r 'application#hello'
