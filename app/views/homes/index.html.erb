@@ -3,7 +3,7 @@
   <h2>最新の投稿</h2>
   <table class="table table-striped">
     <thead class="thead-dark">
-      <tr><th>投稿者</th><th>タイトル</th><th>タグ</th><th>投稿時間</th><th colspan="2"></th></tr>
+      <tr><th>投稿者</th><th>タイトル</th><th>タグ</th><th>いいね</th><th>投稿時間</th><th colspan="2"></th></tr>
     </thead>
     <tbody>
       <% @blogs.reverse_each do |blog| %>
@@ -15,6 +15,7 @@
               # <%= blog.tag %>
             <% end %>
           </th>
+          <th><%= blog.favo %></th>
           <th><%= time_ago_in_words(blog.created_at) %>前</th>
           <th colspan="2"></th>
         </tr>
