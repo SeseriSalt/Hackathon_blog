@@ -7,7 +7,7 @@
 
 データベース作成
 1. docker-compose run web rails db:create
-
+2. docker-compose run web rails db:create
 終了手順
 1. docker-compose down
 
